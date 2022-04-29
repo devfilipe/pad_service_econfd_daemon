@@ -1,0 +1,9 @@
+ExtraDeps = [{cloudi_core, "2.0.4"}].
+CONFIG1 = case lists:keysearch(deps, 1, CONFIG) of
+  {value, {deps, Deps}} ->
+    NDeps = Deps ++ ExtraDeps,
+    lists:keyreplace(deps, 1, CONFIG, {deps, NDeps});
+  _ ->
+    CONFIG ++ [{deps, ExtraDeps}]
+end.
+CONFIG1.
